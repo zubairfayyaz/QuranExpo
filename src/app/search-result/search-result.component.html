@@ -1,0 +1,63 @@
+<div>
+    <button class="btn btn-success w-100">
+                            Search Results <span *ngIf="Array">
+                                {{this.Array.totalResults}}</span>
+                        </button>
+    <div style="background-color: whitesmoke; padding: 8px 0 8px 10px ">
+        <p style="margin: 0 " class="word-appeared ">
+            Words Appeared : 04 time
+        </p>
+    </div>
+    <div class="right-filters">
+        <div class="s-filter-wrapper">
+            <form [formGroup]="againSearchForm" (ngSubmit)="againSearchFormClick() ">
+                <div class="d-flex align-items-baseline justify-content-between mb-3 ">
+                    <p>Word Excluded?</p>
+                    <button class="btn-custom ">Search Again</button>
+                </div>
+                <div class="checkbox-wrapper">
+                    <span *ngIf="Array">
+                                            <div *ngFor="let item of this.Array.listUniqueWords ">
+                                                <input type="checkbox" class="mr-4" [value]="item "
+                                                    (change)="onCheckboxChange($event) " />
+                                                <label class="mx-3">{{item}}</label>
+                                            </div>
+                                        </span>
+
+                </div>
+            </form>
+        </div>
+        <span *ngIf="Array">
+                                    <div class="s-filter-wrapper" *ngFor="let item of this.Array.listDtoQuranText;let i = index">
+                                        <div class="d-flex align-items-baseline mb-1 filter-wrapper-top-text ">
+                                            <a (click)="EliminateResult(i)"><img width="15px "
+                                                    src="assets/images/cross.svg " alt=" " /></a>
+                                            <p>Exclude from Result?</p>
+                                        </div>
+                                        <span clas="overflow-auto">
+                                        <p>...{{item.text.substring(1,60)}}</p>
+                                        </span>
+        <div class="row ">
+            <div class="col-4 ">
+                <button disabled class="btn-custom-1 mb-1 ">
+                                                    {{item.aya}}:<span>{{item.suraName}}</span>
+                            </button>
+                <button class="btn-custom" (click)=done(item)>Read</button>
+            </div>
+            <div class="col-8 ">
+                <div class="checkbox-wrapper disabled" style="height: 57px; width: 80%; border: 1px solid black; padding: 0 13px 0 6px; border-radius: 4px; ">
+                    <span *ngFor="let items of item.searchedWords">
+                                                        <div class='form-group checked'>
+                                                            <input type="checkbox" checked/>
+                                                            <label for="html">{{items}}</label>
+                                                        </div>
+                                                    </span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </span>
+
+</div>
+</div>

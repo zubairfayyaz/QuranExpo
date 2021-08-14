@@ -1,0 +1,58 @@
+<div class="jumbotron jumbotron-fluid mt-5">
+    <div class="container">
+        <form [formGroup]="builderForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-xl-10 col-lg-10 col-md-6 col-sm-6 col-xs-6">
+                    <div class="search-bar">
+                        <div class="row">
+                            <div class="col-xl-4 col-md-3 col-sm-2">
+                                <div class="form-group has-search">
+                                    <span class="fa fa-search form-control-feedback"></span>
+                                    <input type="text" formControlName="searchKeyWord" class="form-control" placeholder="Search" />
+                                </div>
+                            </div>
+                            <div class="search-bar-pd-remove col-xl-8 col-md-9 col-sm-6 col-xs-6">
+                                <div class="d-flex flex-end justify-content-end">
+                                    <div class="search-radio d-flex align-items-center" style="margin: 0 10px">
+                                        <img width="30" src="assets/images/radio-search.svg" alt="" />
+                                        <label for="male">Full Word</label><br />
+                                        <input type="radio" value="COMPLETE_WORD" id="fullWord" formControlName="searchCriteria" />
+                                    </div>
+                                    <div class="search-radio d-flex align-items-center" style="margin: 0 10px">
+                                        <img width="30" src="assets/images/radio-search.svg" alt="" />
+                                        <label for="male1">Start With</label><br />
+                                        <input type="radio" formControlName="searchCriteria" value="STARTING_WITH" id="startWith" />
+                                    </div>
+                                    <div class="search-radio d-flex align-items-center " style="margin: 0 10px ">
+                                        <img width="30" src="assets/images/radio-search.svg " alt=" " />
+                                        <label for="male2">Ending With</label><br />
+                                        <input type="radio" formControlName="searchCriteria" value="ENDING_WITH" id="EndingWith" />
+                                    </div>
+                                    <div class="search-radio d-flex align-items-center " style="margin: 0 23px ">
+                                        <img width="30" src="assets/images/radio-search.svg " alt=" " />
+                                        <label for="male3">Any</label><br />
+                                        <input type="radio" formControlName="searchCriteria" value="ANY" id="any" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row filter-row mt-2 ">
+                <div class="col-xl-4 col-lg-4 col-md-6 ">
+                    <label for=" ">Part Meccan</label>
+                    <ng-multiselect-dropdown [placeholder]=" 'Select City' " formControlName="makkiMadniSuraFlag" [settings]="CityDropDown" [data]="SelectCity" [(ngModel)]="selectedItems1" (onSelect)="onCitySelect($event)" (onDeSelect)="General()">
+                    </ng-multiselect-dropdown>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6 ">
+                    <label for=" ">Part Surah</label>
+                    <ng-multiselect-dropdown [placeholder]=" 'Select Surah' " formControlName="suraList" [settings]="ParaDropDown" [data]="selectPara" [(ngModel)]="selectedItems" (onSelect)="onItemSelect($event)" multiple="true" (onSelectAll)="onSelectAll($event)">
+                    </ng-multiselect-dropdown>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6 mt-3">
+                    <button class="btn btn-success mx-4">Search</button>
+                </div>
+            </div>
+        </form>
+        <app-main [getData]="getData" [formBuilderValue]="builderForm"></app-main>
