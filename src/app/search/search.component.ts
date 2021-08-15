@@ -98,18 +98,15 @@ export class SearchComponent implements OnInit {
     if (this.NewArray.length == 0) {
       this.builderForm.controls['makkiMadniSuraFlag'].setValue(this.builderForm.value.makkiMadniSuraFlag[0].selectcity);
       const body = this.builderForm.value;
-      console.log(body);
       this.overall.getSearchedData(body).subscribe(
         res => {
           this.getData = res;
-          console.log(this.getData);
         });
     } else {
       this.builderForm.addControl('listWordsToExclude', this.NewArray);
       const body = this.builderForm.value;
       this.overall.getSearchedData(body).subscribe(res => {
         this.getData = res;
-        console.log(this.getData);
       });
     }
   }

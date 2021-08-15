@@ -1,3 +1,4 @@
+import { CompileShallowModuleMetadata } from '@angular/compiler';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormArray, FormBuilder, FormControl } from '@angular/forms';
 import { OverallService } from 'src/Services/overall.service';
@@ -26,11 +27,13 @@ export class SearchResultComponent implements OnInit {
   ngOnInit(): void {
   }
   done(item: any) {
+    console.log(item);
     this.overall.done(item).subscribe(
       res => {
+        this.getPageBySura = [];
         this.getPageBySura = res;
+        console.log(this.getPageBySura);
         this.addNewItem();
-
       }
     );
 
