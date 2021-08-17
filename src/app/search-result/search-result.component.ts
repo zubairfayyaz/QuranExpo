@@ -11,7 +11,6 @@ export class SearchResultComponent implements OnInit {
   @Input() Array?: any;
   @Input() formBuilderValue?: any;
   @Output() newItemEvent = new EventEmitter<any>();
-
   NewArray: any = [];
   getPageBySura: any = [];
 
@@ -27,12 +26,9 @@ export class SearchResultComponent implements OnInit {
   ngOnInit(): void {
   }
   done(item: any) {
-    console.log(item);
     this.overall.done(item).subscribe(
       res => {
-        this.getPageBySura = [];
         this.getPageBySura = res;
-        console.log(this.getPageBySura);
         this.addNewItem();
       }
     );
@@ -63,7 +59,6 @@ export class SearchResultComponent implements OnInit {
     const body = this.formBuilderValue.value;
     this.overall.getSearchedData(body).subscribe(res => {
       this.Array = res;
-
 
     });
   }

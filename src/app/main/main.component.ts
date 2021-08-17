@@ -1,3 +1,4 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit, Input } from '@angular/core';
 import { OverallService } from 'src/Services/overall.service';
 @Component({
@@ -9,7 +10,8 @@ export class MainComponent implements OnInit {
 
   @Input() getData?: any;
   @Input() formBuilderValue?: any;
-
+  @Input() JustCheck: boolean = false;
+  check2: boolean = this.JustCheck;
   getFirstSuraa: any;
 
   paraNameShow: any;
@@ -32,7 +34,6 @@ export class MainComponent implements OnInit {
     this.getFirstSura();
     this.getAllMetaDataa();
   }
-
   nextPage() {
     this.newPageNumberByAdditionOne = this.currentPageNumberShow + 1;
     this.overall.getByPage(this.newPageNumberByAdditionOne).subscribe(
@@ -60,7 +61,6 @@ export class MainComponent implements OnInit {
       }
     );
   }
-
   getFirstSura() {
     if (this.getData) {
       this.overall.getFirstSura().subscribe(
@@ -82,5 +82,10 @@ export class MainComponent implements OnInit {
     this.pageAddition = [];
     this.pageSubtraction = [];
     this.getPageBySura = Array;
+    this.suraNameShow = this.getPageBySura.listDtoDisplaySuraByPage[0].suraName;
+    this.paraNameShow = this.getPageBySura.dtoDisplayJuz.name;
+    this.currentPageNumberShow = this.getPageBySura.pageNumber;
+
   }
 }
+

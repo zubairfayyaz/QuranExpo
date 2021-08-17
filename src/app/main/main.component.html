@@ -5,23 +5,34 @@
                 <div class="quran-page-wrapper ">
                     <div class="quran-page ">
                         <div class="d-flex quran-page-title justify-content-between pt-3 ">
-                            <span>( {{this.paraNameShow}} :پارہ  )</span>
+                            <span>( {{this.paraNameShow}} :پارہ )</span>
                             <nav aria-label="... ">
                                 <ul class="pagination ">
                                     <li class="page-item ">
                                         <a class="page-link " (click)="nextPage()" href="#" tabindex="-1 "><img width="15 " style="transform: rotate(180deg) " src="assets/images/arrow-down.svg " alt=" " /></a>
                                     </li>
                                     <li class="page-item active ">
-                                        <a class="page-link " href="">Page: {{this.currentPageNumberShow}}<span
+                                        <div *ngIf="this.getData!==0 then setPage else defaultPage"></div>
+                                        <ng-template #setPage> <a class="page-link " href="">Page: {{this.currentPageNumberShow}}<span
                                                         class="sr-only">(current)</span></a>
+                                        </ng-template>
+                                        <ng-template #defaultPage> <a class="page-link " href="">Page: {{this.currentPageNumberShow}}<span
+                                                        class="sr-only">(current)</span></a>
+                                        </ng-template>
+
                                     </li>
                                     <li class="page-item">
                                         <a class="page-link" (click)="previousPage()" href="#"><img width="15 " src="assets/images/arrow-down.svg" alt=" " /></a>
                                     </li>
                                 </ul>
                             </nav>
+                            <div *ngIf="this.getData.length!==0 && this.getPageBySura.length==0 then Done else notDone"></div>
+                            <ng-template #Done>
+                                <span>( {{this.getData.listDtoQuranText[0].suraName}} :سورہ )</span></ng-template>
+                            <ng-template #notDone>
+                                <span>({{this.suraNameShow}} :سورہ)</span>
+                            </ng-template>
 
-                            <span></span><span>({{this.suraNameShow}} :سورہ)</span>
                         </div>
 
                         <div class="d-flex text-center justify-content-center">
@@ -80,7 +91,7 @@
                         </ng-template>
                         <div *ngIf="this.getFirstSuraa?.length !== 0 &&this.getData == 0 && this.pageAddition == 0 && this.pageSubtraction == 0 then AfterElse"></div>
                         <ng-template #AfterElse>
-                            <p class="mx-5" id="panel4"> <span *ngFor=" let item of this.getFirstSuraa">
+                            <p class="mx-5" id="panel4"> <span *ngFor=" let item of this.getFirstSuraa.slice(1)">
                                             {{item.textUthmani}} 
                                         <span id="circle">⭕</span>
                                 <span id="ayatNumber" class="centered">{{item.aya}}</span>

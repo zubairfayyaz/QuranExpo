@@ -23,6 +23,9 @@ export class SearchComponent implements OnInit {
   NewArray: any = [];
   getFilterArrayOfCity: any = [];
   getData: any = [];
+
+  JustCheck: boolean = false;
+
   builderForm = this.fb.group({
     searchKeyWord: ['', Validators.required],
     searchCriteria: ['', Validators.required],
@@ -102,12 +105,14 @@ export class SearchComponent implements OnInit {
         res => {
           this.getData = res;
         });
+      this.JustCheck = true;
     } else {
       this.builderForm.addControl('listWordsToExclude', this.NewArray);
       const body = this.builderForm.value;
       this.overall.getSearchedData(body).subscribe(res => {
         this.getData = res;
       });
+      this.JustCheck = true;
     }
   }
 }
