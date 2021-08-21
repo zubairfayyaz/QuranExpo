@@ -23,7 +23,7 @@ export class OverallService {
     return this.http.get('http://45.35.42.88:8081/quran/getByPage?pageNumber=' + pageNumber);
   }
   done(Take: any) {
-    return this.http.get('http://45.35.42.88:8081/quran/getBySuraAndAya?sura=' + Take.sura + '&aya=' + Take.aya);
+    return this.http.get('http://45.35.42.88:8081/quran/getPageBySuraAndAya?suraNumber=' + Take.sura + '&ayaNumber=' + Take.aya);
   }
 
 }
