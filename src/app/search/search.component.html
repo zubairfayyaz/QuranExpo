@@ -1,6 +1,6 @@
 <div class="jumbotron jumbotron-fluid mt-5">
     <div class="container">
-        <form [formGroup]="builderForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="builderForm" name="demo" (ngSubmit)="onSubmit()">
             <div class="row">
                 <div class="col-xl-10 col-lg-10 col-md-6 col-sm-6 col-xs-6">
                     <div class="search-bar">
@@ -16,8 +16,9 @@
                                     <div class="search-radio d-flex align-items-center" style="margin: 0 10px">
                                         <img width="30" src="assets/images/radio-search.svg" alt="" />
                                         <label for="male">Full Word</label><br />
-                                        <input type="radio" value="COMPLETE_WORD" id="fullWord" formControlName="searchCriteria" />
+                                        <input type="radio" [value]="newOne[0]" value="COMPLETE_WORD" id="fullWord" formControlName="searchCriteria" />
                                     </div>
+
                                     <div class="search-radio d-flex align-items-center" style="margin: 0 10px">
                                         <img width="30" src="assets/images/radio-search.svg" alt="" />
                                         <label for="male1">Start With</label><br />

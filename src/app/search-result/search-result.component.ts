@@ -29,6 +29,7 @@ export class SearchResultComponent implements OnInit {
     this.overall.done(item).subscribe(
       res => {
         this.getPageBySura = res;
+        console.log(this.getPageBySura);
         this.addNewItem();
       }
     );

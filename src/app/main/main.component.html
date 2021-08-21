@@ -55,12 +55,12 @@
                         <div *ngIf="this.getPageBySura.length!==0 && this.pageSubtraction == 0 && this.pageAddition == 0 then getPage"></div>
                         <ng-template #getPage>
                             <h1 class="mx-5 my-4">
-                                <span *ngFor="let item of this.getPageBySura.listDtoDisplaySuraByPage">
-                                            <span *ngFor="let itemm of item.listDtoDisplayAya">
-                                            <span class="my-5">{{itemm.textUthmani}}
-                                            </span><span>{{itemm.ayaNumber}}</span> <span id="circle">⭕</span>
-                                </span>
-                                </span>
+                                <!-- <span *ngFor="let item of this.getPageBySura.listDtoDisplaySuraByPage"> -->
+                                <!-- <span *ngFor="let itemm of item.listDtoDisplayAya"> -->
+                                <span class="my-5">{{this.getPageBySura.text}}
+                                            </span><span>{{this.getPageBySura.ayaNumber}}</span> <span id="circle">⭕</span>
+                                <!-- </span> -->
+                                <!-- </span> -->
                             </h1>
                         </ng-template>
 
@@ -71,7 +71,7 @@
                                         <span *ngFor="let items of this.item.listDtoDisplayAya">
                                             {{items.textUthmani}} 
                                         <span id="circle">⭕</span>
-                                <span id="ayatNumber" class="centered">{{item.aya}}</span>
+                                <span id="ayatNumber" class="centered">{{items.ayaNumber}}</span>
                                 </span>
                                 </span>
                             </p>
@@ -84,7 +84,7 @@
                                         <span *ngFor=" let items of this.item.listDtoDisplayAya">
                                             {{items.textUthmani}} 
                                         <span id="circle">⭕</span>
-                                <span id="ayatNumber" class="centered">{{item.aya}}</span>
+                                <span id="ayatNumber" class="centered">{{items.ayaNumber}}</span>
                                 </span>
                                 </span>
                             </p>

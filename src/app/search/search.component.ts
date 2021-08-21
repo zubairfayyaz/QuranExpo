@@ -18,7 +18,7 @@ export class SearchComponent implements OnInit {
 
   selectPara: any = [];
   SelectCity: any = [];
-
+  newOne: any = [];
   helper: any = [];
   NewArray: any = [];
   getFilterArrayOfCity: any = [];
@@ -46,7 +46,7 @@ export class SearchComponent implements OnInit {
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 4,
-      allowSearchFilter: true
+      allowSearchFilter: false
     };
     this.ParaDropDown = {
       singleSelection: false,
@@ -89,6 +89,7 @@ export class SearchComponent implements OnInit {
     this.selectPara = this.getFilterArrayOfCity;
   }
   onItemSelect(item: any) {
+
   }
 
   General() {
@@ -99,14 +100,29 @@ export class SearchComponent implements OnInit {
   }
   onSubmit() {
     if (this.NewArray.length == 0) {
-      this.builderForm.controls['makkiMadniSuraFlag'].setValue(this.builderForm.value.makkiMadniSuraFlag[0].selectcity);
-      const body = this.builderForm.value;
-      this.overall.getSearchedData(body).subscribe(
-        res => {
-          this.getData = res;
-        });
-      this.JustCheck = true;
-    } else {
+      if (this.builderForm.controls['makkiMadniSuraFlag'].value == undefined) {
+        this.builderForm.controls['makkiMadniSuraFlag'].setValue("ALL");
+        const body = this.builderForm.value;
+        this.overall.getSearchedData(body).subscribe(
+          res => {
+            this.getData = res;
+          });
+        this.JustCheck = true;
+
+      } else {
+        this.builderForm.controls['makkiMadniSuraFlag'].setValue(this.builderForm.value.makkiMadniSuraFlag[0].selectcity);
+        const body = this.builderForm.value;
+        console.log(body);
+        this.overall.getSearchedData(body).subscribe(
+          res => {
+            this.getData = res;
+          });
+        this.JustCheck = true;
+
+      }
+    }
+
+    else {
       this.builderForm.addControl('listWordsToExclude', this.NewArray);
       const body = this.builderForm.value;
       this.overall.getSearchedData(body).subscribe(res => {

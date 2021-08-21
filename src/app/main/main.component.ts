@@ -43,6 +43,7 @@ export class MainComponent implements OnInit {
         this.suraNameShow = this.pageAddition.listDtoDisplaySuraByPage[0].suraName;
         this.paraNameShow = this.pageAddition.dtoDisplayJuz.name;
         this.pageSubtraction = [];
+
       });
   }
   previousPage() {
