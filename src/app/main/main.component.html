@@ -42,9 +42,9 @@
                         <div *ngIf="this.getData.length !== 0 && this.getPageBySura == 0 && this.pageSubtraction==0 && this.pageAddition==0 then beforeIf"></div>
                         <ng-template #beforeIf>
                             <h4 class="mx-5 my-4">
-                                <span>
-                                <span class="my-5">{{this.getData.listDtoQuranText[0].text}}</span>
-                                <span>{{this.getData.listDtoQuranText[0].aya}}</span>
+                                <span *ngFor="let item of this.getData.listDtoQuranText.slice(0,7)">
+                                <span class="my-5">{{item.text}}</span>
+                                <span>{{item.aya}}</span>
                                 <span id="circle">⭕</span>
                                 </span>
                             </h4>

@@ -13,7 +13,8 @@ export class SearchResultComponent implements OnInit {
   @Output() newItemEvent = new EventEmitter<any>();
   NewArray: any = [];
   getPageBySura: any = [];
-
+  value: boolean = false;
+  checkAllByOneClick: String = '';
   addNewItem() {
     this.newItemEvent.emit(this.getPageBySura);
   }
@@ -62,5 +63,12 @@ export class SearchResultComponent implements OnInit {
       this.Array = res;
 
     });
+  }
+  onChangeNew() {
+    if (this.checkAllByOneClick == "checked") {
+      this.checkAllByOneClick = '';
+    } else {
+      this.checkAllByOneClick = "checked";
+    }
   }
 }

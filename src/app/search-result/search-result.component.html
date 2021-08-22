@@ -1,13 +1,16 @@
 <div>
-    <button class="btn btn-success w-100">
-                            Search Results <span *ngIf="Array">
-                                {{this.Array.totalResults}}</span>
-                        </button>
+    <button class="btn btn-success w-100">Search Results
+        <span *ngIf="Array">
+            {{this.Array.totalResults}}
+        </span>
+    </button>
+
     <div style="background-color: whitesmoke; padding: 8px 0 8px 10px ">
         <p style="margin: 0 " class="word-appeared ">
             Words Appeared : 04 time
         </p>
     </div>
+
     <div class="right-filters">
         <div class="s-filter-wrapper">
             <form [formGroup]="againSearchForm" (ngSubmit)="againSearchFormClick() ">
@@ -17,13 +20,16 @@
                 </div>
                 <div class="checkbox-wrapper">
                     <span *ngIf="Array">
-                                            <div *ngFor="let item of this.Array.listUniqueWords ">
-                                                <input type="checkbox" class="mr-4" [value]="item "
-                                                    (change)="onCheckboxChange($event) " />
-                                                <label class="mx-3">{{item}}</label>
-                                            </div>
-                                        </span>
-
+                        <div *ngIf="this.Array.length!==0"> 
+                        <input type="checkbox" (change)="onChangeNew()" class="mr-4"/>
+                         <label class="mx-3">Check All Boxes</label> 
+                        </div>
+                         <div *ngFor="let item of this.Array.listUniqueWords ">
+                            <input type="checkbox" [checked]="checkAllByOneClick" class="mr-4" [value]="item"
+                                (change)="onCheckboxChange($event)" />
+                              <label class="mx-3">{{item}}</label>
+                        </div>
+                    </span>
                 </div>
             </form>
         </div>

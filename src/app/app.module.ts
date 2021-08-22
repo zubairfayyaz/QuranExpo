@@ -10,6 +10,7 @@ import { SearchResultComponent } from './search-result/search-result.component';
 import { MainComponent } from './main/main.component';
 import { ReactiveFormsModule, FormsModule, NgModel } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +26,16 @@ import { HttpClientModule } from '@angular/common/http';
     NgMultiSelectDropDownModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgCircleProgressModule.forRoot({
+      // set defaults here
+      radius: 10,
+      outerStrokeWidth: 5,
+      innerStrokeWidth: 2,
+      outerStrokeColor: "#78C000",
+      innerStrokeColor: "#C7E596",
+      animationDuration: 1000,
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

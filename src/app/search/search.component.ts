@@ -23,9 +23,10 @@ export class SearchComponent implements OnInit {
   NewArray: any = [];
   getFilterArrayOfCity: any = [];
   getData: any = [];
-
+  model: String = "COMPLETE_WORD";
   JustCheck: boolean = false;
-
+  name: string = "";
+  showSpinner: boolean = false;
   builderForm = this.fb.group({
     searchKeyWord: ['', Validators.required],
     searchCriteria: ['', Validators.required],
@@ -99,6 +100,8 @@ export class SearchComponent implements OnInit {
     this.selectPara = this.helper.listSura;
   }
   onSubmit() {
+    this.name = "yes";
+    this.showSpinner = true;
     if (this.NewArray.length == 0) {
       if (this.builderForm.controls['makkiMadniSuraFlag'].value == undefined) {
         this.builderForm.controls['makkiMadniSuraFlag'].setValue("ALL");
@@ -106,16 +109,17 @@ export class SearchComponent implements OnInit {
         this.overall.getSearchedData(body).subscribe(
           res => {
             this.getData = res;
+            this.name = "Fayyaz";
+            this.showSpinner = false;
           });
         this.JustCheck = true;
-
       } else {
         this.builderForm.controls['makkiMadniSuraFlag'].setValue(this.builderForm.value.makkiMadniSuraFlag[0].selectcity);
         const body = this.builderForm.value;
-        console.log(body);
         this.overall.getSearchedData(body).subscribe(
           res => {
             this.getData = res;
+            console.log(this.getData);
           });
         this.JustCheck = true;
 
