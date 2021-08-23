@@ -1,6 +1,6 @@
 import { CompileShallowModuleMetadata } from '@angular/compiler';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormArray, FormBuilder, FormControl } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { OverallService } from 'src/Services/overall.service';
 @Component({
   selector: 'app-search-result',
@@ -15,6 +15,8 @@ export class SearchResultComponent implements OnInit {
   getPageBySura: any = [];
   value: boolean = false;
   checkAllByOneClick: String = '';
+  againSearchResult: any = [];
+
   addNewItem() {
     this.newItemEvent.emit(this.getPageBySura);
   }
@@ -37,38 +39,43 @@ export class SearchResultComponent implements OnInit {
 
   }
   EliminateResult(item: any) {
-
     this.Array.listDtoQuranText.splice(item, 1);
   }
   onCheckboxChange(e: any) {
-    var againSearchResult: FormArray = this.againSearchForm.get('againSearchResult') as FormArray;
+    // var againSearchResult: FormArray = this.againSearchForm.get('againSearchResult') as FormArray;
     if (e.target.checked) {
-      againSearchResult.push(new FormControl(e.target.value));
+      console.log(e.target.value);
+      this.againSearchResult.push(e.target.value);
     } else {
       let i: number = 0;
-      againSearchResult.controls.forEach((item) => {
+      this.againSearchResult.controls.forEach((item: any) => {
         if (item.value == e.target.value) {
-          againSearchResult.removeAt(i);
+          this.againSearchResult.removeAt(i);
           return;
         }
         i++;
       });
     }
-    this.NewArray = againSearchResult;
+    console.log();
+    this.NewArray = this.againSearchResult;
+    console.log(this.NewArray);
   }
   againSearchFormClick() {
-    this.formBuilderValue.addControl('listWordsToExclude', this.NewArray);
+    //console.log(this.formBuilderValue.value);
+    // this.formBuilderValue.addControl('listWordsToExclude', this.NewArray);
+    this.formBuilderValue.controls['listWordsToExclude'].setValue(this.NewArray);
     const body = this.formBuilderValue.value;
     this.overall.getSearchedData(body).subscribe(res => {
       this.Array = res;
-
     });
   }
   onChangeNew() {
     if (this.checkAllByOneClick == "checked") {
       this.checkAllByOneClick = '';
+      this.NewArray = [];
     } else {
       this.checkAllByOneClick = "checked";
+      this.NewArray = this.Array.listUniqueWords;
     }
   }
 }

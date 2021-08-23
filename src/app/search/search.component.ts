@@ -31,7 +31,8 @@ export class SearchComponent implements OnInit {
     searchKeyWord: ['', Validators.required],
     searchCriteria: ['', Validators.required],
     makkiMadniSuraFlag: ['', Validators.required],
-    suraList: ['', Validators.required]
+    suraList: ['', Validators.required],
+    listWordsToExclude: ['', Validators.required]
   })
   constructor(private fb: FormBuilder,
     private overall: OverallService) { }
@@ -106,6 +107,7 @@ export class SearchComponent implements OnInit {
       if (this.builderForm.controls['makkiMadniSuraFlag'].value == undefined) {
         this.builderForm.controls['makkiMadniSuraFlag'].setValue("ALL");
         const body = this.builderForm.value;
+        console.log(body);
         this.overall.getSearchedData(body).subscribe(
           res => {
             this.getData = res;
@@ -115,14 +117,15 @@ export class SearchComponent implements OnInit {
         this.JustCheck = true;
       } else {
         this.builderForm.controls['makkiMadniSuraFlag'].setValue(this.builderForm.value.makkiMadniSuraFlag[0].selectcity);
+        this.builderForm.controls['listWordsToExclude'].setValue([]);
         const body = this.builderForm.value;
+        console.log(body);
         this.overall.getSearchedData(body).subscribe(
           res => {
             this.getData = res;
-            console.log(this.getData);
+
           });
         this.JustCheck = true;
-
       }
     }
 
