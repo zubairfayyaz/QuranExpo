@@ -17,6 +17,8 @@ export class SearchResultComponent implements OnInit {
   checkAllByOneClick: String = '';
   againSearchResult: any = [];
 
+  //spinner
+  loading: boolean = false;
   addNewItem() {
     this.newItemEvent.emit(this.getPageBySura);
   }
@@ -63,10 +65,12 @@ export class SearchResultComponent implements OnInit {
   againSearchFormClick() {
     //console.log(this.formBuilderValue.value);
     // this.formBuilderValue.addControl('listWordsToExclude', this.NewArray);
+    this.loading = true;
     this.formBuilderValue.controls['listWordsToExclude'].setValue(this.NewArray);
     const body = this.formBuilderValue.value;
     this.overall.getSearchedData(body).subscribe(res => {
       this.Array = res;
+      this.loading = false;
     });
   }
   onChangeNew() {

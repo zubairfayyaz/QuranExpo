@@ -54,8 +54,13 @@
                 <div class="col-xl-4 col-lg-4 col-md-6 mt-3">
                     <button class="btn btn-success mx-4">Search</button>
                 </div>
-                <circle-progress *ngIf="showSpinner" id="ProgressBar" [percent]="100" [radius]="10" [outerStrokeWidth]="4" [innerStrokeWidth]="4    " [outerStrokeColor]="'#78C000'" [innerStrokeColor]="'#C7E596'" [animation]="true" [animationDuration]="50000"></circle-progress>
-
             </div>
         </form>
         <app-main [getData]="getData" [JustCheck]="JustCheck" [formBuilderValue]="builderForm"></app-main>
+
+        <div class="progress-loader" [hidden]="!loading">
+            <div class="loading-spinner">
+                <img src="../assets/spinner.gif" />
+                <span class="loading-message">Please wait...</span>
+            </div>
+        </div>

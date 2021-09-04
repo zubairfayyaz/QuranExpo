@@ -18,15 +18,30 @@ export class SearchComponent implements OnInit {
 
   selectPara: any = [];
   SelectCity: any = [];
+
   newOne: any = [];
+
+  //spinner
+  loading: boolean = false;
+
   helper: any = [];
   NewArray: any = [];
+
   getFilterArrayOfCity: any = [];
   getData: any = [];
+
   model: String = "COMPLETE_WORD";
   JustCheck: boolean = false;
+
   name: string = "";
   showSpinner: boolean = false;
+
+
+
+
+
+
+
   builderForm = this.fb.group({
     searchKeyWord: ['', Validators.required],
     searchCriteria: ['', Validators.required],
@@ -101,29 +116,25 @@ export class SearchComponent implements OnInit {
     this.selectPara = this.helper.listSura;
   }
   onSubmit() {
-    this.name = "yes";
-    this.showSpinner = true;
+    this.loading = true;
     if (this.NewArray.length == 0) {
       if (this.builderForm.controls['makkiMadniSuraFlag'].value == undefined) {
         this.builderForm.controls['makkiMadniSuraFlag'].setValue("ALL");
         const body = this.builderForm.value;
-        console.log(body);
         this.overall.getSearchedData(body).subscribe(
           res => {
             this.getData = res;
-            this.name = "Fayyaz";
-            this.showSpinner = false;
+            this.loading = false;
+
           });
-        this.JustCheck = true;
       } else {
         this.builderForm.controls['makkiMadniSuraFlag'].setValue(this.builderForm.value.makkiMadniSuraFlag[0].selectcity);
         this.builderForm.controls['listWordsToExclude'].setValue([]);
         const body = this.builderForm.value;
-        console.log(body);
         this.overall.getSearchedData(body).subscribe(
           res => {
             this.getData = res;
-
+            this.loading = false;
           });
         this.JustCheck = true;
       }

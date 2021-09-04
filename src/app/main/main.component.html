@@ -36,18 +36,19 @@
                         </div>
 
                         <div class="d-flex text-center justify-content-center">
-                            <p>بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ</p>
+                            <p><b>بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ</b></p>
                         </div>
 
                         <div *ngIf="this.getData.length !== 0 && this.getPageBySura == 0 && this.pageSubtraction==0 && this.pageAddition==0 then beforeIf"></div>
                         <ng-template #beforeIf>
-                            <h4 class="mx-5 my-4">
+                            <h2 id="AfterSearching" class="mx-5 my-4">
                                 <span *ngFor="let item of this.getData.listDtoQuranText.slice(0,7)">
-                                <span class="my-5">{{item.text}}</span>
-                                <span>{{item.aya}}</span>
-                                <span id="circle">⭕</span>
+                                <span  class="my-5">{{item.text}}</span>
+                                <span>⭕
+                                    <span >{{item.aya}}</span>
                                 </span>
-                            </h4>
+                                </span>
+                            </h2>
                         </ng-template>
 
 
@@ -58,8 +59,8 @@
                                 <span *ngFor="let item of this.getPageBySura.listDtoDisplaySuraByPage">
                                 <span *ngFor="let itemm of item.listDtoDisplayAya">
                                 <span class="my-5">{{itemm.textUthmani}}</span>
-                                <span>{{itemm.ayaNumber}}</span>
-                                <span id="circle">⭕</span>
+                                <span id="ayaCss">{{itemm.ayaNumber}}</span>
+                                <span>⭕</span>
                                 </span>
                                 </span>
                             </h3>
@@ -71,7 +72,7 @@
                                 <span *ngFor="let item of this.pageAddition.listDtoDisplaySuraByPage">
                                         <span *ngFor="let items of this.item.listDtoDisplayAya">
                                             {{items.textUthmani}} 
-                                        <span id="circle">⭕</span>
+                                        <span >⭕</span>
                                 <span id="ayatNumber" class="centered">{{items.ayaNumber}}</span>
                                 </span>
                                 </span>
@@ -84,7 +85,7 @@
                                 <span *ngFor=" let item of this.pageSubtraction.listDtoDisplaySuraByPage">
                                         <span *ngFor=" let items of this.item.listDtoDisplayAya">
                                             {{items.textUthmani}} 
-                                        <span id="circle">⭕</span>
+                                        <span >⭕</span>
                                 <span id="ayatNumber" class="centered">{{items.ayaNumber}}</span>
                                 </span>
                                 </span>
@@ -92,12 +93,13 @@
                         </ng-template>
                         <div *ngIf="this.getFirstSuraa?.length !== 0 &&this.getData == 0 && this.pageAddition == 0 && this.pageSubtraction == 0 then AfterElse"></div>
                         <ng-template #AfterElse>
-                            <p class="mx-5" id="panel4"> <span *ngFor=" let item of this.getFirstSuraa.slice(1)">
-                                            {{item.textUthmani}} 
-                                        <span id="circle">⭕</span>
-                                <span id="ayatNumber" class="centered">{{item.aya}}</span>
+                            <h2 dir="rtl" class="mx-5" id="FirstSuraShowCss">
+                                <span *ngFor="let item of this.getFirstSuraa.slice(1)">
+                                    <span id="textFirstSura">{{item.textUthmani}}</span>
+                                <span id="circle">⭕</span>
+                                <span id="ayaCss">{{item.aya -1 }}</span>
                                 </span>
-                            </p>
+                            </h2>
                         </ng-template>
                     </div>
                 </div>

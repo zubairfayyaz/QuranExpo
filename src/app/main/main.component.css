@@ -2,6 +2,40 @@
         text-align: right;
     }
     
+    #FirstSuraShowCss {
+        /* font-size: 58px; */
+        text-align: center;
+        padding-top: 25px;
+        margin-right: 0px;
+    }
+    /* my-loader.component.css */
+    
+    .loading-spinner {
+        background-color: #0000001f;
+        position: absolute;
+        width: 100%;
+        top: 0px;
+        left: 0px;
+        height: 100vh;
+        align-items: center;
+        justify-content: center;
+        display: grid;
+    }
+    
+    .loading-spinner img {
+        align-self: end;
+    }
+    
+    .loading-message {
+        text-align: center;
+        align-self: start;
+    }
+    
+    #AfterSearching {
+        position: relative;
+        text-align: center;
+    }
+    
     .same {
         position: absolute;
     }
@@ -10,13 +44,33 @@
         font-size: 10px;
     }
     
+    #textFirstSura {
+        font-size: 65px;
+        /* padding: 2px; */
+        margin-right: 40px;
+        margin-left: 0px;
+    }
+    
     #forone {
-        margin-right: 5%;
+        /* margin-right: 5%; */
     }
     
     #circle {
         font-size: 25px;
         color: black;
+        /* position: relative; */
+        /* flex: 1 1 auto; */
+        position: absolute;
+        margin-top: 4%;
+        /* margin-left: 100px; */
+    }
+    
+    #ayaCss {
+        position: absolute;
+        margin-top: 40px;
+        margin-left: 40%;
+        margin-right: 2%;
+        font-size: 10px;
     }
     
     #panel1 {

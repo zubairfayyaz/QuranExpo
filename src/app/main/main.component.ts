@@ -26,6 +26,9 @@ export class MainComponent implements OnInit {
   getAllMetaData: any = [];
   getPageBySura: any = [];
 
+  // spinner
+  //loading: boolean = false;
+
   constructor(private overall: OverallService) {
 
   }
@@ -86,7 +89,7 @@ export class MainComponent implements OnInit {
     this.suraNameShow = this.getPageBySura.listDtoDisplaySuraByPage[0].suraName;
     this.paraNameShow = this.getPageBySura.dtoDisplayJuz.name;
     this.currentPageNumberShow = this.getPageBySura.pageNumber;
-
   }
+
 }
 
