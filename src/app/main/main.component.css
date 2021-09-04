@@ -8,6 +8,14 @@
         padding-top: 25px;
         margin-right: 0px;
     }
+    
+    #high {
+        color: red;
+    }
+    
+    .highlightText {
+        background-color: blue;
+    }
     /* my-loader.component.css */
     
     .loading-spinner {

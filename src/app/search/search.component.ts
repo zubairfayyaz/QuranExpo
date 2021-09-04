@@ -36,7 +36,7 @@ export class SearchComponent implements OnInit {
   name: string = "";
   showSpinner: boolean = false;
 
-
+  keyWord: any = "";
 
 
 
@@ -116,6 +116,7 @@ export class SearchComponent implements OnInit {
     this.selectPara = this.helper.listSura;
   }
   onSubmit() {
+    this.keyWord = this.builderForm.controls['searchKeyWord'].value;
     this.loading = true;
     if (this.NewArray.length == 0) {
       if (this.builderForm.controls['makkiMadniSuraFlag'].value == undefined) {

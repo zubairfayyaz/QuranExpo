@@ -11,6 +11,7 @@ import { MainComponent } from './main/main.component';
 import { ReactiveFormsModule, FormsModule, NgModel } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { HighLightPipe } from './high-light.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +19,8 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     FooterComponent,
     SearchComponent,
     SearchResultComponent,
-    MainComponent
+    MainComponent,
+    HighLightPipe
   ],
   imports: [
     BrowserModule,

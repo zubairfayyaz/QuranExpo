@@ -11,6 +11,7 @@ export class MainComponent implements OnInit {
   @Input() getData?: any;
   @Input() formBuilderValue?: any;
   @Input() JustCheck: boolean = false;
+  @Input() keyWord?: String = "";
   check2: boolean = this.JustCheck;
   getFirstSuraa: any;
 

@@ -43,7 +43,7 @@
                         <ng-template #beforeIf>
                             <h2 id="AfterSearching" class="mx-5 my-4">
                                 <span *ngFor="let item of this.getData.listDtoQuranText.slice(0,7)">
-                                <span  class="my-5">{{item.text}}</span>
+                                <span  class="my-5" [innerHtml]="item.text | highLight:this.keyWord"></span>
                                 <span>⭕
                                     <span >{{item.aya}}</span>
                                 </span>
@@ -58,7 +58,9 @@
                             <h3 class="mx-5 my-4">
                                 <span *ngFor="let item of this.getPageBySura.listDtoDisplaySuraByPage">
                                 <span *ngFor="let itemm of item.listDtoDisplayAya">
-                                <span class="my-5">{{itemm.textUthmani}}</span>
+                               <span  class="my-5" [innerHtml]="itemm.textUthmani | highLight:this.keyWord"></span>
+
+
                                 <span id="ayaCss">{{itemm.ayaNumber}}</span>
                                 <span>⭕</span>
                                 </span>
